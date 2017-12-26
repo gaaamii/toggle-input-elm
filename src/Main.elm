@@ -1,7 +1,9 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, a, span, textarea)
-import Html.Attributes exposing (type_, class, value, readonly, wrap)
+import Debug exposing (log)
+import Html exposing (Html, a, div, span, text, textarea)
+import Html.Attributes exposing (class, readonly, type_, value, wrap)
+import Html.Events exposing (onClick)
 
 
 ---- MODEL ----
@@ -22,11 +24,21 @@ init =
 
 type Msg
     = NoOp
+    | OnKeyPress
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        OnKeyPress ->
+            let
+                _ =
+                    log "hoge" e
+            in
+            ( model, Cmd.none )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
 
@@ -41,18 +53,18 @@ view model =
             ]
         , div [ class "keyboard" ]
             [ a [ class "return button", type_ "button" ] [ span [ class "icon is-medium" ] [ text "□" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "1 あ" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "2 か" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "3 さ" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "4 た" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "5 な" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "6 は" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "7 ま" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "8 や" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "9 ら" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "*" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "0 わ" ] ]
-            , a [ class "button", type_ "button" ] [ span [ class "icon" ] [ text "#" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "1 あ" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "2 か" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "3 さ" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "4 た" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "5 な" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "6 は" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "7 ま" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "8 や" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "9 ら" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "*" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "0 わ" ] ]
+            , a [ class "button", type_ "button", onClick OnKeyPress ] [ span [ class "icon" ] [ text "#" ] ]
             ]
         ]
 
