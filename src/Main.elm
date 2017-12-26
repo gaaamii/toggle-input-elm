@@ -10,12 +10,13 @@ import Html.Events exposing (onClick)
 
 
 type alias Model =
-    {}
+    { body : String
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { body = "わからん" }, Cmd.none )
 
 
 
@@ -33,9 +34,9 @@ update msg model =
         OnKeyPress ->
             let
                 _ =
-                    log "hoge" e
+                    log "hoge"
             in
-            ( model, Cmd.none )
+            ( { model | body = model.body ++ "あ" }, Cmd.none )
 
         NoOp ->
             ( model, Cmd.none )
@@ -49,7 +50,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ div [ class "display" ]
-            [ textarea [ class "display-text", readonly True, wrap "hard", value "こんにちは えるむ" ] []
+            [ textarea [ class "display-text", readonly True, wrap "hard", value model.body ] []
             ]
         , div [ class "keyboard" ]
             [ a [ class "return button", type_ "button" ] [ span [ class "icon is-medium" ] [ text "□" ] ]
